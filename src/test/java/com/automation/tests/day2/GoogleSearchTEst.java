@@ -16,7 +16,8 @@ public class GoogleSearchTEst {
         driver.get("http://google.com");
         Thread.sleep(2000);
 
-        //By.name("q")  --> [name="q"]
+        //By.name("q")  --> [name="q"]    (Name is one of the Selenium locators, there are 8. We use them to find elements
+        //to choose locator, just use By.locator
         WebElement search = driver.findElement(By.name("q"));
 
         //Once we find an element, how do you enter text?
