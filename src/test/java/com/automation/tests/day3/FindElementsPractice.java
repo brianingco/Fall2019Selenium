@@ -3,7 +3,9 @@ package com.automation.tests.day3;
 import com.automation.utilities.DriverFactory;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class FindElementsPractice {
@@ -17,8 +19,15 @@ public class FindElementsPractice {
     WebDriver driver = DriverFactory.createADriver("chrome");
     driver.get("http://practice.cybertekschool.com/sign_up");
 
+    WebElement fullName = driver.findElement(By.name("full_name"));
+    fullName.sendKeys("Mister Twister");
 
+    WebElement email = driver.findElement(By.name("email"));
+    email.sendKeys("sdet@cybertek.com");
 
+    WebElement signUp = driver.findElement(By.name("wooden_spoon"));
+    signUp.submit();
+    //when you see type="submit", you can use submit() else just use .click
 
 
 
