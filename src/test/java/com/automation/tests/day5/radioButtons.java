@@ -41,6 +41,7 @@ public class radioButtons {
             } else {
                 System.out.println("Button is disabled");
             }
+            System.out.println();
 
         }
 
