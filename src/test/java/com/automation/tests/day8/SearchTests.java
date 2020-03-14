@@ -47,16 +47,24 @@ public class SearchTests {
     @Test(description = "Search for Java book on amazon")
     public void amazonSearchTest(){
         driver.get("http://amazon.com");
+
+        //There is a chance the item is not visible so we will maximise the window
+        driver.manage().window().maximize();
         BrowserUtils.wait(5);
+
         driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Java", Keys.ENTER);
         BrowserUtils.wait(5);
-        List<WebElement> searchItems = driver.findElements(By.tagName("h2"));
+
+        //find all links inside h2 elements
+        List<WebElement> searchItems = driver.findElements(By.xpath("//h2//a"));
+
         //click on the first item
         for(WebElement searchItem: searchItems){
             System.out.println("Title: "+searchItem.getText());
         }
         searchItems.get(0).click();
         BrowserUtils.wait(5);
+
         WebElement productTitle = driver.findElement(By.id("title"));
         String productTitleString = productTitle.getText();
         System.out.println(productTitleString);
