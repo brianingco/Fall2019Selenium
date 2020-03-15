@@ -48,13 +48,26 @@ public class PracticeTests {
         BrowserUtils.wait(5);
 
 
-        String expected="Welcome to the Secure Area. When you are done click logout below.";
+        String expected = "Welcome to the Secure Area. When you are done click logout below.";
         String actual = driver.findElement(By.className("subheader")).getText();
 
-        Assert.assertEquals(expected, actual,"Sub-header message is not matching!");
-    }
+        Assert.assertEquals(expected, actual, "Sub-header message is not matching!");
     }
 
+    @Test
+    public void forgotPassword() {
+        driver.findElement(By.linkText("Forgot Password")).click();
+        BrowserUtils.wait(5);
+
+        driver.findElement(By.name("email")).sendKeys("brian.ingco@yahoo.com",Keys.ENTER);
+        BrowserUtils.wait(5);
+
+        String expected = "Your e-mail's been sent!";
+        String actual = driver.findElement(By.tagName("h4")).getText();
+
+        Assert.assertEquals(expected, actual);
+    }
+}
 
     //Interview Questions:
     //How do you handle SSL issues in Selenium?
