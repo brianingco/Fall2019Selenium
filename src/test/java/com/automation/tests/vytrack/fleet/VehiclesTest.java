@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 /**
  *
  ######## TASK
@@ -58,7 +59,7 @@ public class VehiclesTest {
 
     }
     @AfterMethod
-    public void teardown() {
+    public void tearDown() {
         //if webDriver object alive
         if (driver != null) {
             //close browser, close session
