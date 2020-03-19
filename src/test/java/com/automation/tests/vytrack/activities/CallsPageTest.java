@@ -6,8 +6,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,7 +24,11 @@ public class CallsPageTest {
     private String storeManagerUserName="storemanager85";
     private String storeManagerPassword="UserUser123";
     private By activitiesBy = By.xpath("//span[@class='title title-level-1' and contains(text(),'Activities')]");
-    private By logCallBtnBy = By.cssSelector("a[title='Log call']");
+
+    private By createCalendarEventBtnBy = By.cssSelector("a[title='Create Calendar event']");
+    private By currentUserBy =By.cssSelector("#user-menu > a");
+    private By currentOwnerBy = By.id("s2id_oro_calendar_event_form_calendar");
+    private By titleBy = By.cssSelector("[name='oro_calendar_event_form[title]']");
 
 
 
@@ -44,13 +50,25 @@ public class CallsPageTest {
         actions.moveToElement(driver.findElement(activitiesBy)).perform();
         BrowserUtils.wait(2);
 
-        driver.findElement(By.linkText("Calls")).click();
+        driver.findElement(By.linkText("Calendar Events")).click();
         BrowserUtils.wait(5);
 
     }
-    @Test
-    public void verifyLogCallButton(){
+
+
+    @Test(description = "default options")
+    public void verifyDefaultValues() throws InterruptedException {
+    Thread.sleep(4000);
+
+    //Default owner name should be current user
+        String currentUserName = driver.findElement(currentUserBy).getText();
+        String defaultOwnerName = driver.findElement(currentOwnerBy).getText();
+        Assert.assertEquals(currentUserName,defaultOwnerName);
     }
+
+
+
+
     @AfterMethod
     public void tearDown(){
         driver.quit();
