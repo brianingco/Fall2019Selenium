@@ -57,20 +57,31 @@ public class ActionsTests {
             WebElement downloads = driver.findElement(By.id("ui-id-4"));
             WebElement PDF = driver.findElement(By.id("ui-id-5"));
 
-
-            //build() is needed when you have a couple of actions
-            //always end with perform()
             actions.moveToElement(enabled)
                     .pause(1000)
                     .moveToElement(downloads)
                     .pause(1000)
-                    .moveToElement(PDF)
                     .click(PDF)
                     .build()
                     .perform();
-
-
         }
+        @Test
+        public void dragAndDropTest(){
+            driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
+            BrowserUtils.wait(3);
+
+            WebElement earth = driver.findElement(By.id("droptarget"));
+            WebElement moon = driver.findElement(By.id("droptarget"));
+
+            actions.dragAndDrop(moon, earth).perform();
+            String expected = "You did great!";
+            String actual = earth.getText();
+
+            Assert.assertEquals(actual, expected);
+
+            }
+
+
 
         @AfterMethod
         public void tearDown(){
